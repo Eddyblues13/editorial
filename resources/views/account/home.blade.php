@@ -17,7 +17,7 @@
             </div>
             <div class="auth-links">
                 <a href="#">Login</a>
-                <a href="#">Register</a>
+                <a href="{{route('register.page')}}">Register</a>
             </div>
             <nav>
                 <a href="#">Home</a>
@@ -58,49 +58,51 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-header">Please Enter the Following</div>
-                
+
                         <div class="form-group">
                             <label for="username">Username:</label>
                             <input type="text" id="username" name="username" value="{{ old('username') }}">
                             @error('username')
-                                <span class="text-red-500">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
-                
+
                         <div class="form-group">
                             <label for="password">Password:</label>
                             <input type="password" id="password" name="password">
                             @error('password')
-                                <span class="text-red-500">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
-                
+
                         <div class="login-buttons">
                             <button type="submit" name="role" value="author" class="login-btn">Author Login</button>
                             <button type="submit" name="role" value="reviewer" class="login-btn">Reviewer Login</button>
                             <button type="submit" name="role" value="editor" class="login-btn">Editor Login</button>
-                            <button type="submit" name="role" value="publisher" class="login-btn">Publisher Login</button>
+                            <button type="submit" name="role" value="publisher" class="login-btn">Publisher
+                                Login</button>
                         </div>
-                
+
                         @if(session('error'))
-                            <div class="text-red-500">
-                                {{ session('error') }}
-                            </div>
+                        <div class="text-red-500">
+                            {{ session('error') }}
+                        </div>
                         @endif
                     </form>
-                
+
                     <div class="orcid-section">
                         <p>Or Login via:
-                            <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID icon" class="orcid-icon">
+                            <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID icon"
+                                class="orcid-icon">
                             <a href="#" class="text-blue-600">What is ORCID?</a>
                         </p>
                         <div class="login-links">
                             <a href="#" class="text-blue-600">Send Login Details</a>
-                            <a href="#" class="text-blue-600">Register Now</a>
+                            <a href="{{route('register.page')}}" class="text-blue-600">Register Now</a>
                             <a href="#" class="text-blue-600">Login Help</a>
                         </div>
                     </div>
-                
+
                     <div class="orcid-notice">
                         <p><strong>NEW: Login via ORCID</strong></p>
                         <p>Please note that in addition to logging in via your EM username and password,

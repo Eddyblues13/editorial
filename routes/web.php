@@ -8,8 +8,10 @@ Route::get('/', function () {
     return view('account.home');
 });
 
-
+Route::get('/login', [LoginController::class, 'loginPage'])->name('login.page');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/register', [LoginController::class, 'registerPage'])->name('register.page');
+Route::post('/register', [LoginController::class, 'register'])->name('register');
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard Routes
