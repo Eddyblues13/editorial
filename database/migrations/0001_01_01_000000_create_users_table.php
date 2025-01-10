@@ -13,10 +13,25 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('username')->unique()->nullable();
+            $table->string('password')->nullable();
+            $table->string('title')->nullable();
+            $table->string('middle_name')->nullable();
+            $table->string('degree')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('position')->nullable();
+            $table->string('institution')->nullable();
+            $table->string('department')->nullable();
+            $table->string('street_address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('country')->nullable();
+            $table->boolean('is_reviewer')->default(false);
+            $table->json('keywords')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

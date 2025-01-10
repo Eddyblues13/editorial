@@ -41,6 +41,11 @@ class LoginController extends Controller
         return view('account.register');
     }
 
+    public function loginPage()
+    {
+        return view('account.home');
+    }
+
     /**
      * Handle the registration request.
      */

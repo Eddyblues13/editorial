@@ -234,13 +234,13 @@
 <body>
     <div class="top-bar">
         <div class="logo-section">
-            <div class="logo"><img src="logo1.png" width="35" height="35" alt="Logo"></div>
+            <div class="logo"><img src="{{asset('logo1.png')}}" width="35" height="35" alt="Logo"></div>
             <div class="site-title">Materials Characterization</div>
         </div>
         <div class="auth-links">
-            <a href="#">Login</a>
+            <a href="{{route('login')}}">Login</a>
             <span>|</span>
-            <a href="#">Register</a>
+            <a href="{{route('register')}}">Register</a>
         </div>
     </div>
 
@@ -278,33 +278,54 @@
                     <div style="font-weight: bold; padding-bottom: 10px;">Or type in your details and continue to
                         register without using ORCID:</div>
 
-                    <div class="form-group">
-                        <label>
-                            <span>Given/First Name</span>
-                            <span class="required">*</span>
-                        </label>
-                        <input type="text">
+                    <div class="registration-step-one">
+                        <h2>Step 1: Personal Information</h2>
+                        <form action="{{ route('registration.step1.submit') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="first_name">
+                                    <span>Given/First Name</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
+                                    class="form-control @error('first_name') is-invalid @enderror"
+                                    placeholder="Enter your first name" required>
+                                @error('first_name')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="last_name">
+                                    <span>Family/Last Name</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
+                                    class="form-control @error('last_name') is-invalid @enderror"
+                                    placeholder="Enter your last name" required>
+                                @error('last_name')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">
+                                    <span>E-mail Address</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="email-group">
+                                    <input type="email" id="email" name="email" value="{{ old('email') }}"
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="Enter your email address" required>
+                                    <button type="submit" class="continue-btn">Continue >></button>
+                                    @error('email')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <span>Family/Last Name</span>
-                            <span class="required">*</span>
-                        </label>
-                        <input type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <span>E-mail Address</span>
-                            <span class="required">*</span>
-                        </label>
-                        <div class="email-group">
-                            <input type="email">
-                            <button class="continue-btn">Continue >></button>
-                            <span class="info-icon">?</span>
-                        </div>
-                    </div>
 
                     <div class="warning-box">
                         WARNING - If you think you already have an existing registration of any type (Author, Reviewer,
