@@ -12,7 +12,7 @@ class DashboardController extends Controller
      */
     public function authorDashboard()
     {
-        return view('dashboard.author');
+        return view('dashboard.home');
     }
 
     /**
@@ -20,7 +20,7 @@ class DashboardController extends Controller
      */
     public function reviewerDashboard()
     {
-        return view('dashboard.reviewer');
+        return view('dashboard.home');
     }
 
     /**
@@ -28,7 +28,7 @@ class DashboardController extends Controller
      */
     public function editorDashboard()
     {
-        return view('dashboard.editor');
+        return view('dashboard.home');
     }
 
     /**
@@ -36,15 +36,19 @@ class DashboardController extends Controller
      */
     public function publisherDashboard()
     {
-        return view('dashboard.publisher');
+        return view('dashboard.home');
     }
 
     /**
      * Logout the user.
      */
-    public function logout()
+    public function destroy(Request $request)
     {
         Auth::logout();
-        return redirect()->route('login');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/'); // Redirect to the home page or login page
     }
 }

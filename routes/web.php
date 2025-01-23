@@ -22,6 +22,7 @@ Route::post('/registration/step3', [RegistrationController::class, 'step3Submit'
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [DashboardController::class, 'destroy'])->name('logout');
     // Dashboard Routes
     Route::get('/author/dashboard', [DashboardController::class, 'authorDashboard'])->name('author.dashboard');
     Route::get('/reviewer/dashboard', [DashboardController::class, 'reviewerDashboard'])->name('reviewer.dashboard');
